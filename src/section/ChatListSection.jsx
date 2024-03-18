@@ -1,6 +1,5 @@
-import { Grid, Typography, Box, Divider } from "@mui/material";
-import { Chat, Chat as ChatIcon } from "@mui/icons-material";
-import { Outlet, Navigate, NavLink, useParams } from "react-router-dom";
+import { Grid, Typography, Box } from "@mui/material";
+import { Outlet, useParams } from "react-router-dom";
 import React from "react";
 import SearchBox from "../component/SearchBox";
 import ChatTab from "../component/ChatTab";
@@ -22,7 +21,7 @@ const ChatListSection = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          width: "200px",
+          maxWidth: "200px",
           borderRight: "1px solid",
           color: "divider",
           height: "100vh",

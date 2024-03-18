@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Paper, InputBase, Divider } from "@mui/material";
+import { Paper, InputBase } from "@mui/material";
 import {
-  Menu as MenuIcon,
   Search as SearchIcon,
-  Directions as DirectionsIcon,
 } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 const SearchBox = () => {
@@ -19,10 +17,10 @@ const SearchBox = () => {
 
   return (
     <Paper elevation={0} sx={{ display: "flex", alignItems: "center" }}>
-      <IconButton type="button"  aria-label="search">
+      <IconButton type="button"  aria-label="search" onClick={handleSearch}>
         <SearchIcon />
       </IconButton>
-      <InputBase placeholder="Search Chat" />
+      <InputBase placeholder="Search Chat" onChange={handleChange}/>
     </Paper>
   );
 };

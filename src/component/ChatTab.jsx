@@ -1,16 +1,12 @@
 import {
-  Delete as DeleteIcon,
   Folder as FolderIcon,
 } from "@mui/icons-material";
 import {
-  List,
-  ListItem,
-  IconButton,
   Avatar,
   ListItemAvatar,
   ListItemText,
   Typography,
-  ListItemButton
+  ListItemButton,
 } from "@mui/material";
 import React from "react";
 
@@ -18,24 +14,19 @@ const ChatTab = ({ username }) => {
   return (
     <ListItemButton
       sx={{
-        
         borderRadius: "10px",
         paddingTop: "5px",
+        px: "2px",
         "&:hover": {
           backgroundColor: "lightgray",
         },
       }}
-      // secondaryAction={
-      //   <IconButton edge="end" aria-label="delete">
-      //     <DeleteIcon />
-      //   </IconButton>
-      // }
     >
-      {/* <ListItemAvatar>
-        <Avatar>
-          <FolderIcon />
+      <ListItemAvatar sx={{ minWidth: "40px" }}>
+        <Avatar sx={{ width: "30px", height: "30px" }}>
+          <FolderIcon sx={{ width: "20px", height: "20px" }} />
         </Avatar>
-      </ListItemAvatar> */}
+      </ListItemAvatar>
 
       <ListItemText
         primary={

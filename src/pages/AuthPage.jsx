@@ -13,10 +13,12 @@ import {
 import LoginRegisterImage from "../assets/images/conversation.gif";
 import { apiPost } from "../utils/apiHandler";
 
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCredentials } from "../slices/authSlice";
+import { Navigate, useNavigate, redirect } from "react-router-dom";
 
 const AuthPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
@@ -41,17 +43,24 @@ const AuthPage = () => {
       const response = await apiPost("/api/auth/login", {
         body: { email: email, password: password },
       });
+
       dispatch(setCredentials(response.userDetails));
-      
+      console.log("fadsf");
+      window.location.href = "/chat";
     }
   };
 
-  const handleRegisterClick = () => {
+  const handleRegisterClick = async () => {
     setShowLoginForm(false);
     setPassword("");
     if (!showRegisterForm) setShowRegisterForm(!showRegisterForm);
     else {
-      //send register request
+      const response = await apiPost("/api/auth/register", {
+        body: { email: email, password: password, username: username },
+      });
+      dispatch(setCredentials(response.userDetails));
+
+      window.location.href = "/chat";
     }
   };
 

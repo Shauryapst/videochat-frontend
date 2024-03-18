@@ -1,21 +1,21 @@
 import {
-  Drawer,
   ListItem,
   Box,
   List,
   ListItemIcon,
   ListItemButton,
-  Container,
   CssBaseline
 } from "@mui/material";
 import {
-  Chat,
   Chat as ChatIcon,
   Groups as GroupsIcon,
   PersonAdd as InviationIcon,
 } from "@mui/icons-material";
-import React from "react";
-import { Outlet, Navigate, NavLink} from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, NavLink} from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { establishSocketConnection } from "../socketCommunication/socketConnection";
+import { loadCredentials } from "../slices/authSlice";
 
 const iconTabs = (key, icon, url) => {
   return (
@@ -42,6 +42,17 @@ const iconTabs = (key, icon, url) => {
 };
 
 const DashboardPage = () => {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const userData = useSelector((state) => state.auth);
+  console.log(userData);
+  useEffect(()=>{
+    if(token)
+      dispatch(loadCredentials());
+      establishSocketConnection(userData);
+  },[token])
+  
+
   return (
     <Box sx={{ display: 'flex', height:"100vh"}}>
       <CssBaseline />
